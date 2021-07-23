@@ -8,8 +8,7 @@ ARG DEBIAN_FRONTEND='noninteractive'
 
 ARG OVER
 ARG OREL
-ARG OSHA
-ENV OVER=${OVER} OREL=${OREL} OSHA=${OSHA}
+ENV OVER=${OVER} OREL=${OREL}
 
 ENV APT_DEPS=' \
     build-essential \
@@ -26,7 +25,7 @@ RUN set -eux; \
     apt-get update \
     && apt-get install -y --no-install-recommends \
         curl \
-#        cups \
+        ghostscript \
         git \
         gnupg \
         iputils-ping \
