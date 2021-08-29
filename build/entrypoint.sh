@@ -1,7 +1,7 @@
 #!/bin/bash
 #set -e
 
-if [ $(basename $1) != "/opt/odoo/src/odoo-bin" ] ; then
+if [ $(basename $1) != "odoo-bin" ] ; then
 	exec "$@"
 fi
 
