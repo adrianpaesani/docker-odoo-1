@@ -56,7 +56,6 @@ RUN set -eux; \
     # Create required odoo folders
     && mkdir -p \
         /home/odoo/datadir \
-        /home/odoo/log \
         /home/odoo/project \
         /home/odoo/private \
         /home/odoo/public \
@@ -114,13 +113,12 @@ RUN set -eux; \
     # Removes unnecessary build temporary files including pip cache
     && rm -rf /var/lib/apt/lists/* /wkhtmltox.deb ~/.cache/pip
 
-WORKDIR /home/odoo
-
-COPY ./entrypoint.sh entrypoint.sh
-COPY ./odoo.conf .odoorc
+COPY ./entrypoint.sh /home/odoo/entrypoint.sh
+COPY ./odoo.conf /home/odoo/.odoorc
 
 EXPOSE 8069 8072
 
+WORKDIR /home/odoo
 USER odoo
 
 ENTRYPOINT ["./entrypoint.sh"]
