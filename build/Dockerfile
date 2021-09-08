@@ -69,7 +69,16 @@ RUN set -eux; \
     # Remove unnecessary translations (removes ~400 MB from image!)
     && find /home/odoo/src/addons/*/i18n/ /home/odoo/src/odoo/addons/base/i18n/ -type f -not -name 'es.po' -not -name 'es_AR.po' -delete \
     # Remove unnecessary localization folders (removes ~58 MB from image)
-    && find /home/odoo/src/addons/l10n_* -maxdepth 0 -type d -not -name 'l10n_ar' -not -name 'l10n_latam_base' -not -name 'l10n_latam_invoice_document' -exec rm -r {} + \
+    && find /home/odoo/src/addons/l10n_* -maxdepth 0 -type d \
+                                    -not -name 'l10n_ar' \
+                                    -not -name 'l10n_uy' \
+                                    -not -name 'l10n_cl' \
+                                    -not -name 'l10n_us' \
+                                    -not -name 'l10n_latam_base' \
+                                    -not -name 'l10n_latam_invoice_document' \
+                                    -not -name 'l10n_generic_coa' \
+                                    -not -name 'l10n_multilang' \
+                                    -exec rm -r {} + \
     # Prevent installation of unnecessary autoinstallable modules
     && sed -i "s/.*auto_install.*/'auto_install': False,/g" /home/odoo/src/addons/mail_bot/__manifest__.py \
     && sed -i "s/.*auto_install.*/'auto_install': False,/g" /home/odoo/src/addons/odoo_referral/__manifest__.py \
