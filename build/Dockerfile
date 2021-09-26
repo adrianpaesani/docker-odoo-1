@@ -34,6 +34,7 @@ RUN set -eux; \
         python3-renderpm \
         python3-suds \
         sudo \
+#        cups \
         ${APT_DEPS} \
     # Create odoo user
     && groupadd -g 1100 odoo \
